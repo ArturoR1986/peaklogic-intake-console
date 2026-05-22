@@ -1,159 +1,42 @@
-# AGENTS.md
+# AGENTS.md — Codex Instructions
 
-## Project
+## Role
 
-Build **PeakLogic Intake Console v0.1**.
+You are Codex working as the implementation limb for a PeakLogic product-specific repository.
 
-This product is one output of the PeakLogic problem-to-product system.
+## Product
 
-It is not the whole PeakLogic system.
+PeakLogic Roofing Field Intake Console v0.1
 
-Product purpose:
+## Product Identity
 
-```text
-Turn messy roofing field notes into structured, reviewable field packets.
-```
+The product is the intake console.
 
-Current stage:
+The field packet is the output.
 
-```text
-Local prototype
-```
+Do not treat this MVP as a final report generator.
 
----
+## Operating Rules
 
-## Engineering Principle
-
-Build the smallest working version that proves the workflow.
-
-Use engineering judgment to keep the implementation simple, testable, and easy to extend.
-
-Stay inside the approved v0.1 scope unless an implementation blocker requires a small adjustment.
-
----
-
-## Architecture
-
-Use the approved Build Packet as the product source of truth.
-
-Use an agent-runnable core with a human review surface:
-
-```text
-Python core logic
-CLI runner
-JSON output
-SQLite storage
-tests
-Streamlit review UI
-human output layer
-```
-
-Separate responsibilities clearly:
-
-```text
-src/logic.py = mechanical extraction and structured packet generation
-src/human_output.py = natural summaries and customer-facing draft language
-src/database.py = SQLite storage
-src/schemas.py = field contracts and defaults
-src/export_utils.py = JSON/export helpers
-cli.py = command-line execution
-app.py = Streamlit display and review surface
-tests/ = behavior proof
-```
-
-Streamlit is the review interface, not the business logic layer.
-
----
-
-## Human Output Rule
-
-Human-facing language belongs in:
-
-```text
-src/human_output.py
-```
-
-Human-facing language should:
-
-```text
-use only known facts
-sound natural and professional
-preserve uncertainty
-stay reviewable
-avoid unsupported claims
-```
-
-Customer-facing output is draft-only unless a human approves it.
-
----
+- Build only the approved MVP.
+- Keep the tool local, simple, readable, and testable.
+- Use deterministic/rule-based extraction for v0.1.
+- Do not require external APIs or paid services.
+- Do not expand into a full reporting platform.
+- Preserve all trust and human review boundaries.
+- Write clear code with helpful comments.
 
 ## Trust Rules
 
-The product must:
+- Do not invent facts.
+- Mark missing information clearly.
+- Customer-facing notes are draft only.
+- Keep internal notes separate from customer-facing draft notes.
+- Do not create final cause, warranty, legal, pricing, safety, or liability claims.
 
-```text
-use provided input only
-flag missing information
-avoid invented facts
-separate internal and external content
-mark customer-facing text as draft
-preserve human review before customer use
-avoid unsupported legal, pricing, warranty, liability, or final technical claims
-```
+## Finish Criteria
 
-Domain-specific rule:
-
-```text
-Do not make final claims about leak cause, roof condition, warranty status, completion status, pricing, or liability unless a responsible human confirms them.
-```
-
----
-
-## Commands
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-Run tests:
-
-```bash
-pytest
-```
-
-Run the CLI sample:
-
-```bash
-python cli.py --input sample_inputs/field_note_001.txt --output outputs/field_packet_001.json
-```
-
-Run the Streamlit review UI:
-
-```bash
-streamlit run app.py
-```
-
----
-
-## Completion Criteria
-
-A task is complete only when:
-
-```text
-requested files/code are created or updated
-tests pass
-the relevant run command succeeds
-outputs remain structured and reviewable
-trust boundaries are preserved
-README or run instructions are updated when needed
-```
-
----
-
-## Final Rule
-
-Build the product artifact.
-
-Do not redesign the PeakLogic system unless the user explicitly asks for system-level work.
+- App runs.
+- Tests pass.
+- README explains setup.
+- Delivery summary is provided.

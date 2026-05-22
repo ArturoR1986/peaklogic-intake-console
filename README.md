@@ -1,35 +1,63 @@
-# PeakLogic Intake Console v0.1
+# PeakLogic Roofing Field Intake Console v0.1
 
-Turn messy roofing field notes into structured, reviewable field packets.
+## Product Identity
 
-## Setup
+The **PeakLogic Roofing Field Intake Console** is the first product layer for solving messy roofing field reports.
+
+It is not the report generator.
+
+It is the intake console that receives messy field information, classifies it, structures it, flags missing details, and prepares a reviewable field packet for office review and later report creation.
+
+## Product Sentence
+
+PeakLogic Roofing Field Intake Console turns messy foreman updates into structured, reviewable field packets for office review and later report creation.
+
+## Primary User
+
+- Office admin
+- Service manager
+- PeakLogic operator
+
+## Input Provider
+
+- Foreman
+- Field crew
+- Service technician
+
+## Input
+
+Messy foreman updates such as:
+
+- WhatsApp-style text
+- pasted voice transcript
+- rough job notes
+- quick photo comments
+- material notes
+- follow-up comments
+
+## Core Action
+
+Capture, classify, structure, and flag missing field information.
+
+## Primary Output
+
+A reviewable field packet.
+
+## Hard Boundary
+
+This is not a final customer report generator.
+
+Customer-facing output is draft-only and requires human review.
+
+## Local MVP Run Command
 
 ```bash
 pip install -r requirements.txt
+streamlit run app.py
 ```
 
-## Run tests
+## Test Command
 
 ```bash
 pytest
 ```
-
-## Run CLI sample
-
-```bash
-python cli.py --input sample_inputs/field_note_001.txt --output outputs/field_packet_001.json
-```
-
-## Run Streamlit review UI
-
-```bash
-streamlit run app.py
-```
-
-## Trust boundaries
-
-- Uses provided input only.
-- Flags missing information.
-- Keeps internal and customer-facing output separate.
-- Marks customer-facing text as draft.
-- Requires human review before customer use.
