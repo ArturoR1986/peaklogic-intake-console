@@ -61,3 +61,18 @@ streamlit run app.py
 ```bash
 pytest
 ```
+
+## MVP Behavior
+
+- Paste messy roofing field updates.
+- Add optional metadata: job name, address, date, foreman, and crew.
+- Classify the intake as daily report, repair update, leak investigation, inspection note, material/follow-up note, or unknown.
+- Generate a structured reviewable field packet.
+- Mark absent metadata as `Missing` and unclear captured details as `Unknown`.
+- Keep internal notes separate from customer-facing draft notes.
+- Include the human review warning in customer-facing draft notes.
+- Export the field packet as Markdown or JSON from the Streamlit UI.
+
+## Trust Boundary
+
+The app uses deterministic, rule-based extraction only. It does not call an external LLM, require an API key, add authentication, or connect to cloud services. Customer-facing notes are draft-only and must be reviewed by a human before use.
